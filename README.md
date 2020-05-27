@@ -1,0 +1,1 @@
+# django-best-practice-example
