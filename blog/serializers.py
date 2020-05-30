@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from rest_framework.serializers import ModelSerializer, ReadOnlyField
+from rest_framework.serializers import ModelSerializer
 from .models import Post
 
 
 class PostSerializer(ModelSerializer):
-    auth_username = ReadOnlyField(source='author.username')
+
     class Meta:
         model = Post
-        fields = ['id', 'auth_username', 'message']
+        fields = ['id', 'message', 'created_at']
