@@ -4,10 +4,8 @@ from .models import Post
 
 
 class PostSerializer(serializers.ModelSerializer):
-    owner = serializers.HiddenField(
-        default=serializers.CurrentUserDefault()
-    )
+    owner = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Post
-        fields = ['id', 'message', 'created_at', 'owner']
+        fields = ["id", "message", "created_at", "owner"]

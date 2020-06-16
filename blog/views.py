@@ -5,7 +5,7 @@ from .serializers import PostSerializer
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
+from .pagination import CustomResultsSetPagination, CustomMakePagination
 
 
 class PostViewSet(ModelViewSet):
@@ -13,8 +13,7 @@ class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
     authentication_classes = [JSONWebTokenAuthentication, SessionAuthentication]
+    pagination_class = CustomMakePagination
 
-    def list(self, request, *args, **kwargs):
-        posts = self.get_queryset().filter(owner=request.user)
-        serializer = self.get_serializer(posts, many=True)
-        return Response({"results": serializer.data})
+    def get_queryset(self):
+        return super().get_queryset().filter(owner=self.request.user)
