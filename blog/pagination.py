@@ -8,11 +8,11 @@ from collections import OrderedDict
 
 class CustomResultsSetPagination(PageNumberPagination):
     page_size = 100
-    page_size_query_param = 'page_size'
+    page_size_query_param = "page_size"
 
 
 class CustomMakePagination(PageNumberPagination):
-    page_size_query_param = 'page_size'
+    page_size_query_param = "page_size"
 
     def paginate_queryset(self, queryset, request, view=None):
         # page_size를 가져옵니다.
@@ -39,7 +39,6 @@ class CustomMakePagination(PageNumberPagination):
 
     def get_paginated_response(self, data):
         # pagination의 리턴시 보여줄 데이터 객체 입니다.
-        return Response(OrderedDict([
-            ('count', self.page.paginator.count),
-            ('results', data)
-        ]))
+        return Response(
+            OrderedDict([("count", self.page.paginator.count), ("results", data)])
+        )
