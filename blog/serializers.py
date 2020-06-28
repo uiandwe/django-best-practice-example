@@ -16,6 +16,11 @@ class PostSerializer(serializers.ModelSerializer):
     def get_owner(self, obj):
         return str(obj.owner)
 
+    def create(self, validated_data):
+        validated_data['owner'] = self.context['request'].user
+
+        return super().create(validated_data)
+
     class Meta:
         model = Post
         fields = ["id", "message", "created_at", "count", "public", "owner"]
