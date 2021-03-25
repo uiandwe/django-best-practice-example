@@ -112,7 +112,7 @@ python-crontab==2.4.0
 python-dateutil==2.6.1
 python-dotenv==0.10.3
 pytz==2018.5
-PyYAML==5.2
+PyYAML==5.4
 pyzmq==19.0.0
 rcssmin==1.0.6
 redis==2.10.6
